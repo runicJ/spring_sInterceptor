@@ -11,13 +11,13 @@
 <body>
 <p><br><p>
 <div class="container">
-	<h2>게시판 글쓰기</h2>
+	<h2>자료실 글쓰기</h2>
 	<div><font color="blue">${data}</font></div>
 	<hr>
 	<div><img src="${ctp}/resources/images/2.jpg" width="350px" /></div>  <!-- 서블릿 컨텍스트 통해서 resources 설정해서 사용 -->
 	<hr>
 	<p>
-		<a href="${ctp}/board/boardList" class="btn btn-warning">돌아가기</a>
+		<a href="${ctp}/pds/pdsList" class="btn btn-warning">돌아가기</a>
 	</p>
 </div>
 <p><br><p>

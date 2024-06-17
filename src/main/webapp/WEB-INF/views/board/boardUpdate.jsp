@@ -17,7 +17,7 @@
 	<div><img src="${ctp}/resources/images/3.jpg" width="350px" /></div>  <!-- 서블릿 컨텍스트 통해서 resources 설정해서 사용 -->
 	<hr>
 	<p>
-		<a href="${ctp}/" class="btn btn-warning">돌아가기</a>
+		<a href="${ctp}/member/memberMain" class="btn btn-warning">돌아가기</a>
 	</p>
 </div>
 <p><br><p>

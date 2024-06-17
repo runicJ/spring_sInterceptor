@@ -10,6 +10,8 @@
 	<!-- Interceptor 설정(정의) -->
 	<beans:bean id="boardInterceptor" class="com.spring.sInterceptor.interceptor.BoardInterceptor" />
 	<beans:bean id="memberInterceptor" class="com.spring.sInterceptor.interceptor.MemberInterceptor" />
+	<beans:bean id="pdsInterceptor" class="com.spring.sInterceptor.interceptor.PdsInterceptor" />
+	<beans:bean id="guestInterceptor" class="com.spring.sInterceptor.interceptor.GuestInterceptor" />
 	
 	<interceptors>
 		<interceptor>
@@ -40,6 +42,25 @@
 	    <beans:ref bean="memberInterceptor" />
 	  </interceptor>
 	</interceptors>
+	
+	<interceptors>
+		<interceptor>
+	    <mapping path="/pds/**"/>
+	    <!-- 파일로만 예외처리 -->
+			<!-- 꺼내서 인터셉트로 사용하겠다 -->
+	    <beans:ref bean="pdsInterceptor" />
+	  </interceptor>
+	</interceptors>
+	
+	<interceptors>
+		<interceptor>
+	    <mapping path="/guest/**"/>
+	    <!-- 파일로만 예외처리 -->
+	    <exclude-mapping path="/guest/guestList"/>
+			<!-- 꺼내서 인터셉트로 사용하겠다 -->
+	    <beans:ref bean="guestInterceptor" />
+	  </interceptor>
+	</interceptors>
 
 </beans:beans>
 
@@ -58,7 +79,7 @@ login / idCheck / nickCheck / join / memberMain / memberUpdate / memberDelete / 
  -->
  
 <!-- 
-- 회원가입/아이디중복체크,닉네임중복체크,로그인창, 방명록 은 모든이들이 접속가능처리
+- 회원가입/아이디중복체크,닉네임중복체크,로그인창, 방명록 은 모든 이들이 접속가능처리
 - 게시판(board)은 로그인한 회원만 접속가능, 모든회원들이 사용할수 있다. 단, 준회원은 읽기만 가능
 - 자료실(pds)은 정회원 이상만 사용가능, 단, 정회원은 업로드할 수 없다.
 - 방명록(guest)의 글은 모두 볼수 있으며, 방명록 글쓰기는 로그인 회원만 글을 올릴수 있다.

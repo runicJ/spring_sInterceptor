@@ -28,6 +28,14 @@ public class MessageController {
 			model.addAttribute("msg", mid + "님 로그아웃 되었습니다.");
 			model.addAttribute("url", "/member/login");
 		}
+		else if(msgFlag.equals("loginGuest")) {
+			model.addAttribute("msg", "로그인 이후 가능한 메뉴입니다.");
+			model.addAttribute("url", "/member/login");
+		}
+		else if(msgFlag.equals("levelLow")) {
+			model.addAttribute("msg", "등업 후에 이용 가능한 메뉴입니다.");
+			model.addAttribute("url", "/member/memberMain");
+		}
 		else if(msgFlag.equals("joinOk")) {
 			model.addAttribute("msg", mid + "님 회원가입 되었습니다.");
 			model.addAttribute("url", "/member/login");

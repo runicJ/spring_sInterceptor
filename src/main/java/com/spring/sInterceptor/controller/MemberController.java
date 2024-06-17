@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/member")
 public class MemberController {
 
-//	@RequestMapping(value = "/login", method = RequestMethod.GET)
-//	public String getLogin(Model model) {
-//		System.out.println("이곳은 member컨트롤러의 login메소드 입니다.");
-//		model.addAttribute("data", "member컨트롤러의 login메소드에서 보냅니다.");
-//		return "member/login";
-//	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String getLogin(Model model) {
+		System.out.println("이곳은 member컨트롤러의 login메소드 입니다.");
+		model.addAttribute("data", "member컨트롤러의 login메소드에서 보냅니다.");
+		return "member/login";
+	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String postLogin(String mid, String pwd, int level, 

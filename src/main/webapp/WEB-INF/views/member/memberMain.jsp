@@ -17,7 +17,10 @@
   <div><img src="${ctp}/resources/images/4.jpg" width="350px" /></div>
   <hr/>
   <p>
-    <a href="${ctp}/member/logout" class="btn btn-success">로그아웃</a>
+    <a href="${ctp}/member/memberUpdate" class="btn btn-success">회원정보수정</a>
+    <a href="${ctp}/member/memberSearch">회원찾기</a>
+    <a href="${ctp}/member/logout" class="btn btn-warning">로그아웃</a>
+    <a href="${ctp}/member/memberDelete" class="btn btn-danger">회원탈퇴</a>
   </p>
   <hr>
 		<a href="${ctp}/board/boardList" class="btn btn-primary">게시판</a>
