@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Interceptor 설정(정의) -->
+	<beans:bean id="boardInterceptor" class="com.spring.sInterceptor.interceptor.BoardInterceptor" />
+	<beans:bean id="memberInterceptor" class="com.spring.sInterceptor.interceptor.MemberInterceptor" />
+	
+	<interceptors>
+		<interceptor>
+			<!-- 	
+			<mapping path="/board/boardList"/>  거를 것만 여기 쓰는 것(제한할 것만)
+	    <mapping path="/board/boardInput"/>
+	    <mapping path="/board/boardUpdate"/>
+	     --> <!-- *보드바로 밑 *밑에 하위폴더 -->
+	    <mapping path="/board/**"/>
+	    <!-- 파일로만 예외처리 -->
+	    <!-- <exclude-mapping path="/board/boardList"/> -->
+			<!-- 꺼내서 인터셉트로 사용하겠다 -->
+	    <beans:ref bean="boardInterceptor" />
+	  </interceptor>
+	</interceptors>
+
+	<interceptors>
+		<interceptor>
+	    <mapping path="/member/**"/>
+	    <!-- 파일로만 예외처리 -->
+	    <exclude-mapping path="/member/login"/>
+	    <exclude-mapping path="/member/logout"/>
+	    <exclude-mapping path="/member/idCheck"/>
+	    <exclude-mapping path="/member/nickCheck"/>
+	    <exclude-mapping path="/member/join"/>
+	    <exclude-mapping path="/member/joinOk"/>
+			<!-- 꺼내서 인터셉트로 사용하겠다 -->
+	    <beans:ref bean="memberInterceptor" />
+	  </interceptor>
+	</interceptors>
+
+</beans:beans>
+
+<!--
+회원관리 인터셉터설계
+모든 사용자가 사용할 수 있는 파일?
+- login / loginOk / logout / idCheck / nickCheck / join / joinOk => ajax
+
+MemberIntercepter를 통해서 제한적인 처리를 하는 파일?
+- memberMain / memberUpdate / memberUpdateOk / memberDelete / memberList / memberSearch
+
+만들어야할 jsp파일?
+login / idCheck / nickCheck / join / memberMain / memberUpdate / memberDelete / memberList / memberSearch
+
+메시지 처리파일경로 ? logout / joinOk / memberUpdateOk
+ -->
+ 
+<!-- 
+- 회원가입/아이디중복체크,닉네임중복체크,로그인창, 방명록 은 모든이들이 접속가능처리
+- 게시판(board)은 로그인한 회원만 접속가능, 모든회원들이 사용할수 있다. 단, 준회원은 읽기만 가능
+- 자료실(pds)은 정회원 이상만 사용가능, 단, 정회원은 업로드할 수 없다.
+- 방명록(guest)의 글은 모두 볼수 있으며, 방명록 글쓰기는 로그인 회원만 글을 올릴수 있다.
+
+회원등급 : 
+  0:관리자, 1:우수회원, 2:정회원, 3:준회원, 99:비회원
+ -->
