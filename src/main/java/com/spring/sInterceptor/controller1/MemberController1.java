@@ -1,4 +1,4 @@
-package com.spring.sInterceptor.controller;
+package com.spring.sInterceptor.controller1;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/member")
-public class MemberController {
+@RequestMapping("/member1")
+public class MemberController1 {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String getLogin(Model model) {
@@ -19,10 +19,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String postLogin(String mid, String pwd, int level,
-			HttpSession session, Model model) {
+	public String postLogin(String mid, String pwd, int level, 
+			HttpSession session, Model model) {  // 변수가 틀리면 400번 에러
 		if(mid.substring(0,1).toLowerCase().equals("a")) {
-			session.setAttribute("sMid", mid);
+			session.setAttribute("sMid", mid);  // 정상 로그인시 세션 발급
 			session.setAttribute("sLevel", level);
 			
 			String strLevel = "";
@@ -37,7 +37,6 @@ public class MemberController {
 		else {
 			return "redirect:/message/loginNo";
 		}
-		
 	}
 	
 //	@RequestMapping(value = "/loginOk", method = RequestMethod.GET)
@@ -46,12 +45,20 @@ public class MemberController {
 //		//model.addAttribute("data", "member컨트롤러의 login메소드에서 보냅니다.");
 //		return "redirect:/message/loginOk?mid=admin";
 //	}
+	
+//	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+//	public String getLogout(Model model) {
+//		System.out.println("이곳은 member컨트롤러의 logout메소드 입니다.");
+//		//model.addAttribute("data", "member컨트롤러의 logout메소드에서 보냅니다.");
+//		//return "member/login";
+//		return "redirect:/message/logout?mid=admin";
+//	}
+	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String getLogout(Model model, HttpSession session) {
 		String mid = (String) session.getAttribute("sMid");
-		session.invalidate();
 		
-		return "redirect:/message/logout?mid=" + mid;
+		return "redirect:/message/logout?mid="+mid;
 	}
 	
 	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)

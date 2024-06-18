@@ -12,18 +12,19 @@
 	<beans:bean id="memberInterceptor" class="com.spring.sInterceptor.interceptor.MemberInterceptor" />
 	<beans:bean id="pdsInterceptor" class="com.spring.sInterceptor.interceptor.PdsInterceptor" />
 	<beans:bean id="guestInterceptor" class="com.spring.sInterceptor.interceptor.GuestInterceptor" />
+	<beans:bean id="etcInterceptor" class="com.spring.sInterceptor.interceptor.EtcInterceptor" />
 	
 	<interceptors>
-		<interceptor>
-			<!-- 	
+<!-- 		<interceptor>
+				
 			<mapping path="/board/boardList"/>  거를 것만 여기 쓰는 것(제한할 것만)
 	    <mapping path="/board/boardInput"/>
 	    <mapping path="/board/boardUpdate"/>
-	     --> <!-- *보드바로 밑 *밑에 하위폴더 -->
+	     *보드바로 밑 *밑에 하위폴더
 	    <mapping path="/board/**"/>
-	    <!-- 파일로만 예외처리 -->
-	    <!-- <exclude-mapping path="/board/boardList"/> -->
-			<!-- 꺼내서 인터셉트로 사용하겠다 -->
+	    파일로만 예외처리
+	    <exclude-mapping path="/board/boardList"/>
+			꺼내서 인터셉트로 사용하겠다
 	    <beans:ref bean="boardInterceptor" />
 	  </interceptor>
 	</interceptors>
@@ -31,14 +32,14 @@
 	<interceptors>
 		<interceptor>
 	    <mapping path="/member/**"/>
-	    <!-- 파일로만 예외처리 -->
+	    파일로만 예외처리
 	    <exclude-mapping path="/member/login"/>
 	    <exclude-mapping path="/member/logout"/>
 	    <exclude-mapping path="/member/idCheck"/>
 	    <exclude-mapping path="/member/nickCheck"/>
 	    <exclude-mapping path="/member/join"/>
 	    <exclude-mapping path="/member/joinOk"/>
-			<!-- 꺼내서 인터셉트로 사용하겠다 -->
+			꺼내서 인터셉트로 사용하겠다
 	    <beans:ref bean="memberInterceptor" />
 	  </interceptor>
 	</interceptors>
@@ -46,8 +47,8 @@
 	<interceptors>
 		<interceptor>
 	    <mapping path="/pds/**"/>
-	    <!-- 파일로만 예외처리 -->
-			<!-- 꺼내서 인터셉트로 사용하겠다 -->
+	    파일로만 예외처리
+			꺼내서 인터셉트로 사용하겠다
 	    <beans:ref bean="pdsInterceptor" />
 	  </interceptor>
 	</interceptors>
@@ -55,10 +56,38 @@
 	<interceptors>
 		<interceptor>
 	    <mapping path="/guest/**"/>
-	    <!-- 파일로만 예외처리 -->
+	    파일로만 예외처리
 	    <exclude-mapping path="/guest/guestList"/>
-			<!-- 꺼내서 인터셉트로 사용하겠다 -->
+			꺼내서 인터셉트로 사용하겠다
 	    <beans:ref bean="guestInterceptor" />
+	  </interceptor> -->
+ 	  <interceptor>
+	    <mapping path="/board/boardList"/>
+	    <beans:ref bean="etcInterceptor" />
+	  </interceptor>
+	  <interceptor>
+	    <mapping path="/guest/**"/>
+	    <exclude-mapping path="/guest/guestList"/>
+	    <beans:ref bean="guestInterceptor" />
+	  </interceptor>
+	  <interceptor>
+	    <mapping path="/pds/**"/>
+	    <beans:ref bean="pdsInterceptor" />
+	  </interceptor>
+	  <interceptor>
+	    <mapping path="/board/**"/>
+	    <exclude-mapping path="/board/boardList"/>
+	    <beans:ref bean="boardInterceptor" />
+	  </interceptor>
+	  <interceptor>
+	    <mapping path="/member/**"/>
+	    <exclude-mapping path="/member/login"/>
+	    <exclude-mapping path="/member/logout"/>
+	    <exclude-mapping path="/member/idCheck"/>
+	    <exclude-mapping path="/member/nickCheck"/>
+	    <exclude-mapping path="/member/join"/>
+	    <exclude-mapping path="/member/joinOk"/>
+	    <beans:ref bean="memberInterceptor" />
 	  </interceptor>
 	</interceptors>
 
